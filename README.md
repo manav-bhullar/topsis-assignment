@@ -25,25 +25,39 @@ This project is developed as part of the academic assignment on Multi-Criteria D
 
 ## 📂 Project Structure
 
+```text
 topsis-assignment/
 │
-├── cli/                  # Part-I: CLI Program
+├── cli/                        # Part-I: CLI Implementation
 │   └── topsis.py
 │
-├── package/              # Part-II: PyPI Package
+├── package/                    # Part-II: PyPI Package
 │   ├── topsis_manav_102303990/
+│   │   ├── __init__.py
+│   │   └── topsis.py
 │   └── setup.py
 │
-├── web/                  # Part-III: Web Application
+├── web/                        # Part-III: Web Application
 │   ├── backend/
+│   │   ├── server.py
+│   │   ├── venv/
+│   │   └── requirements.txt
+│   │
 │   └── frontend/
+│       ├── src/
+│       └── package.json
 │
-├── data/                 # Sample CSV files
+├── data/                       # Sample Input Files
+│   └── data.csv
 │
-├── screenshots/          # Output evidence
+├── screenshots/                # Proof of Execution
+│   ├── cli.png
+│   ├── web.png
+│   ├── email.png
+│   └── pypi.png
 │
-└── README.md
-
+└── README.md                   # Main Documentation
+```
 ---
 
 # 🔹 PART–I: Command Line Interface (CLI)
