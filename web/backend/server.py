@@ -181,4 +181,4 @@ if __name__ == '__main__':
     print("[INIT] Starting Flask server...")
     print(f"[INIT] SMTP_USER configured: {bool(SMTP_USER)}")
     print(f"[INIT] SMTP_PASS configured: {bool(SMTP_PASS)}")
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    app.run(debug=True, host='127.0.0.1', port=5001)
