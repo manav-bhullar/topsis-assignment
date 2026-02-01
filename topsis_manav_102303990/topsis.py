@@ -83,13 +83,18 @@ def main():
 
     s_plus = np.sqrt(((weighted - ideal_best) ** 2).sum(axis=1))
     s_minus = np.sqrt(((weighted - ideal_worst) ** 2).sum(axis=1))
+    
+    performance_score = s_minus / (s_plus + s_minus)
+    
+    df["Topsis Score"] = performance_score
+    df["Rank"] = df["Topsis Score"].rank(ascending=False, method="dense").astype(int)
+    
+    df.to_csv(output_file, index=False)
+    print(f"Result saved to '{output_file}'")
 
-    print("Distance from Ideal Best (S+):")
-    print(s_plus)
 
-    print("\nDistance from Ideal Worst (S-):")
-    print(s_minus)
-
+def run():
+    main()
 
 if __name__ == "__main__":
-    main()
+    run()
