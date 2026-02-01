@@ -1,3 +1,0 @@
-[console_scripts]
-topsis = topsis_manav_102303990.topsis:run
-
