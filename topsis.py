@@ -1,6 +1,6 @@
 import sys
 import pandas as pd
-
+import numpy as np
 
 def main():
     args = sys.argv
@@ -48,8 +48,47 @@ def main():
     if numeric_df.isnull().values.any():
         print("Error: From second to last column, all values must be numeric.")
         sys.exit(1)
+        
+    
+    denominator = np.sqrt((numeric_df**2).sum())
+    
+    if (denominator == 0).any():
+        print("Error: Division by zero encountered during normalization.")
+        sys.exit(1)
 
-    print("Input file validated successfully.")
+    normalized_df = numeric_df / denominator
+    
+    if len(weights) != normalized_df.shape[1]:
+        print("Error: Number of weights does not match number of criteria columns.")
+        sys.exit(1)
+    weighted = normalized_df * weights
+  
+  
+    ideal_best = []
+    ideal_worst = []
+    
+    for i in range(weighted.shape[1]):
+        col = weighted.iloc[ : , i]
+        if impacts[i] == '+':
+            ideal_best.append(col.max())
+            ideal_worst.append(col.min())
+        else:
+            ideal_best.append(col.min())
+            ideal_worst.append(col.max())
+
+
+    ideal_best = np.array(ideal_best)
+    ideal_worst = np.array(ideal_worst)
+
+
+    s_plus = np.sqrt(((weighted - ideal_best) ** 2).sum(axis=1))
+    s_minus = np.sqrt(((weighted - ideal_worst) ** 2).sum(axis=1))
+
+    print("Distance from Ideal Best (S+):")
+    print(s_plus)
+
+    print("\nDistance from Ideal Worst (S-):")
+    print(s_minus)
 
 
 if __name__ == "__main__":
